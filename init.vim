@@ -1,15 +1,51 @@
 "Global settings
 set nu
 set nocompatible
-set modelines
+set relativenumber
+set undofile
+set ignorecase
+set smartcase "Case insensitive if everything is lower case
+set gdefault "Global replacement by default, omit the g in :%s/foo/bar
+set textwidth=120 "Line length before wrap
+set colorcolumn=121 
+
+"So you don't cheat using the arrows
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+" Arrows
+"Get rid of Help
+noremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+"So you don't have to use Shift for commands
+nnoremap ; : 
+
+let mapleader = "," "Sets leader key
+inoremap jj <ESC> 
+"
+"Clear search results
+nnoremap <leader><space> :noh<cr> 
+"Jump to parenthesis
+nnoremap <tab> %
+vnoremap <tab> %
+"Opens vertical split
+nnoremap <leader>w <C-w>v<C-w>l
+
 "Tabs
 set tabstop=4
 set shiftwidth=4 
 set softtabstop=4 "for indentation in normal mode
 set expandtab "insert spaces instead of tabs 
 
-set relativenumber
-set undofile
+"Save of file on lost focus
+"autocmd FocustLost * :wa
 
 "dein Scripts-----------------------------
 
@@ -46,6 +82,8 @@ if dein#check_install()
   call dein#install()
 endif
 "End dein Scripts-------------------------
+
+"------------ Plugins ------------
 
 "Gruvbox 
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
