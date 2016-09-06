@@ -125,7 +125,7 @@ nmap <silent> <leader>t :TestNearest<CR>
 
 "Startify
 autocmd User Startified setlocal buftype=
-let g:startify_bookmarks = ['~/.zshrc', '~/.config/nvim/init.vim']
+let g:startify_bookmarks = ['~/dotfiles/zshrc', '~/dotfiles/init.vim']
 let g:startify_list_order = ['bookmarks', 'files', 'dir', 'sessions', 'commands']
 
 "Deoplete
@@ -148,3 +148,5 @@ imap <silent><expr><tab> TabWrap()
 inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
 " Escape: exit autocompletion, go to Normal mode
 inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
+" Enter: complete&close popup if visible (so next Enter works); else: break undo
+inoremap <silent><expr> <Cr> pumvisible() ? deoplete#mappings#close_popup() : "<C-g>u<Cr>"
