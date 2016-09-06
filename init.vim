@@ -23,6 +23,15 @@ noremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
+"Exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+
+"Better move between splitted windows
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 "So you don't have to use Shift for commands
 nnoremap ; : 
 
