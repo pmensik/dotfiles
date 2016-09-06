@@ -18,7 +18,6 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-" Arrows
 "Get rid of Help
 noremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -67,6 +66,8 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('artur-shaik/vim-javacomplete2')
 call dein#add('janko-m/vim-test')
 call dein#add('mhinz/vim-startify')
+call dein#add('tpope/vim-fireplace')
+call dein#add('Shougo/deoplete.nvim')
 
 " You can specify revision/branch/tag.
 "call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -117,3 +118,6 @@ nmap <silent> <leader>t :TestNearest<CR>
 autocmd User Startified setlocal buftype=
 let g:startify_bookmarks = ['~/.zshrc', '~/.config/nvim/init.vim']
 let g:startify_list_order = ['bookmarks', 'files', 'dir', 'sessions', 'commands']
+
+"Deoplete
+let g:deoplete#enable_at_startup = 1
