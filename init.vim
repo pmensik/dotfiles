@@ -55,6 +55,9 @@ set expandtab "insert spaces instead of tabs
 "Save of file on lost focus
 "autocmd FocustLost * :wa
 
+" Open markdown files with Firefox (with Markdown plugin installed).
+autocmd BufEnter *.md exe 'noremap <F5> :!firefox %:p<CR>'
+
 "dein Scripts-----------------------------
 
 " Required:
@@ -77,6 +80,7 @@ call dein#add('janko-m/vim-test')
 call dein#add('mhinz/vim-startify')
 call dein#add('tpope/vim-fireplace')
 call dein#add('Shougo/deoplete.nvim')
+call dein#add('vim-scripts/paredit.vim')
 
 " You can specify revision/branch/tag.
 "call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
