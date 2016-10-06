@@ -46,6 +46,12 @@ vnoremap <tab> %
 "Opens vertical split
 nnoremap <leader>w <C-w>v<C-w>l
 
+"Closes buffer without closing the underlying window
+map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>. 
+"Cycle between buffers
+map <C-P> :bprevious<CR>
+map <C-N> :bnext<CR>
+
 "Tabs
 set tabstop=4
 set shiftwidth=4 
@@ -80,7 +86,7 @@ call dein#add('janko-m/vim-test')
 call dein#add('mhinz/vim-startify')
 call dein#add('tpope/vim-fireplace')
 call dein#add('Shougo/deoplete.nvim')
-call dein#add('vim-scripts/paredit.vim')
+call dein#add('guns/vim-sexp')
 
 " You can specify revision/branch/tag.
 "call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
