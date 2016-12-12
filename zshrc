@@ -101,13 +101,8 @@ alias mvn-add="mvn archetype:generate \
     -DarchetypeGroupId=org.apache.maven.archetypes \
     -DarchetypeArtifactId=maven-archetype-quickstart \
     -DarchetypeVersion=RELEASE"
-alias shub-ssh=km_network_ssh
-alias shub-scp=km_network_scp
-
-km_network_ssh() {
-    sshpass -p 'shubproto' ssh shub@10.10.30.$1
-}
-
-km_network_scp() {
-    sshpass -p 'shubproto'scp $1 shub@10.10.30.$2:/home/shub
-}
+alias mvn-single="mvn archetype:generate -DgroupId=com.konicaminolta.servicehub
+   -DartifactId=authentication-library
+   -DarchetypeArtifactId=maven-archetype-quickstart
+   -DinteractiveMode=false"
+alias pkg-list='dpkg-query --show --showformat='"'"'${Package;-50}\t${Installed-Size}\n'"'"' | sort -k 2 -n | grep -v deinstall | awk '"'"'{printf "%.3f MB \t %s\n", $2/(1024), $1}'"'"'"'

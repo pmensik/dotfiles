@@ -21,6 +21,7 @@ inoremap <right> <nop>
 "Get rid of Help
 noremap <F1> <ESC>
 nnoremap <F1> <ESC>
+inoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 "Exit terminal mode
@@ -52,6 +53,13 @@ map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>.
 map <C-P> :bprevious<CR>
 map <C-N> :bnext<CR>
 
+"Autocomplete window"
+"inoremap <C-Space> <C-X><C-O> 
+"inoremap <C-x><C-o> <C-Space>
+"if exists('g:neovim_dot_app')
+"  nmap <c-space> <nul> 
+"end
+
 "Tabs
 set tabstop=4
 set shiftwidth=4 
@@ -63,6 +71,10 @@ set expandtab "insert spaces instead of tabs
 
 " Open markdown files with Firefox (with Markdown plugin installed).
 autocmd BufEnter *.md exe 'noremap <F5> :!firefox %:p<CR>'
+
+"Jump to the implementation of method
+inoremap [d <C-b>
+nnoremap [d <C-b>
 
 "dein Scripts-----------------------------
 
@@ -79,7 +91,7 @@ call dein#add('Shougo/dein.vim')
 " Add or remove your plugins here:
 call dein#add('morhetz/gruvbox')
 call dein#add('vim-airline/vim-airline')
-call dein#add('scrooloose/syntastic')
+call dein#add('neomake/neomake')
 call dein#add('scrooloose/nerdtree')
 call dein#add('artur-shaik/vim-javacomplete2')
 call dein#add('janko-m/vim-test')
@@ -87,6 +99,9 @@ call dein#add('mhinz/vim-startify')
 call dein#add('tpope/vim-fireplace')
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('guns/vim-sexp')
+call dein#add('tpope/vim-commentary')
+call dein#add('junegunn/fzf')
+call dein#add('junegunn/fzf.vim')
 
 " You can specify revision/branch/tag.
 "call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -113,9 +128,6 @@ set background=dark
 
 "Airline
 let g:airline#extensions#tabline#enabled = 1
-
-"Syntastic
-let g:syntastic_quiet_messages = { "type": "style" }
 
 "javacomplete
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
@@ -160,3 +172,6 @@ inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
 inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
 " Enter: complete&close popup if visible (so next Enter works); else: break undo
 inoremap <silent><expr> <Cr> pumvisible() ? deoplete#mappings#close_popup() : "<C-g>u<Cr>"
+
+"Neomake
+autocmd! BufWritePost * Neomake
