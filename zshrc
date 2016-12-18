@@ -88,8 +88,12 @@ bindkey "^R" history-incremental-search-backward
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias gst="git status"
+alias gad="git add ."
+alias gco="git commit"
+alias gcoa="git commit -a"
+alias gpu="git push"
 alias vi="vim"
-alias pyvi="vi --remote-silent $(find . -name '*.py' -not -name '*init*')"
 alias mvni="mvn-color clean install"
 alias mci="mvn-color clean install -DskipTests=true"
 alias weather="curl wttr.in"

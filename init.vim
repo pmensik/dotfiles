@@ -37,6 +37,7 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap ; : 
 
 let mapleader = "," "Sets leader key
+let maplocalleader = "\\"
 inoremap jj <ESC> 
 "
 "Clear search results
@@ -75,6 +76,9 @@ autocmd BufEnter *.md exe 'noremap <F5> :!firefox %:p<CR>'
 "Jump to the implementation of method
 inoremap [d <C-b>
 nnoremap [d <C-b>
+
+"Close help split after autocmplete done
+autocmd CompleteDone * pclose
 
 "dein Scripts-----------------------------
 
