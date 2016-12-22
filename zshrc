@@ -88,6 +88,8 @@ bindkey "^R" history-incremental-search-backward
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias gdi="git diff"
+alias gdic="git diff --cached"
 alias gst="git status"
 alias gad="git add ."
 alias gco="git commit"
