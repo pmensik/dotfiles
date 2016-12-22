@@ -80,6 +80,9 @@ nnoremap [d <C-b>
 "Close help split after autocmplete done
 autocmd CompleteDone * pclose
 
+"Calls Slamhound
+nnoremap <F2> :Slamhound<CR>
+
 "dein Scripts-----------------------------
 
 " Required:
@@ -95,7 +98,6 @@ call dein#add('Shougo/dein.vim')
 " Add or remove your plugins here:
 call dein#add('morhetz/gruvbox')
 call dein#add('vim-airline/vim-airline')
-call dein#add('neomake/neomake')
 call dein#add('scrooloose/nerdtree')
 call dein#add('artur-shaik/vim-javacomplete2')
 call dein#add('janko-m/vim-test')
@@ -104,8 +106,12 @@ call dein#add('tpope/vim-fireplace')
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('guns/vim-sexp')
 call dein#add('tpope/vim-commentary')
-call dein#add('junegunn/fzf')
-call dein#add('junegunn/fzf.vim')
+" call dein#add('junegunn/fzf')
+" call dein#add('junegunn/fzf.vim')
+call dein#add('guns/vim-slamhound')
+call dein#add('venantius/vim-eastwood')
+call dein#add('venantius/vim-cljfmt')
+call dein#add('vim-syntastic/syntastic')
 
 " You can specify revision/branch/tag.
 "call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -177,5 +183,15 @@ inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
 " Enter: complete&close popup if visible (so next Enter works); else: break undo
 inoremap <silent><expr> <Cr> pumvisible() ? deoplete#mappings#close_popup() : "<C-g>u<Cr>"
 
-"Neomake
-autocmd! BufWritePost * Neomake
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" let g:syntastic_python_checkers = ['pylint']
+" let g:syntastic_clj_checkers = ['eastwood']
