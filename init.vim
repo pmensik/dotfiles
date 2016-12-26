@@ -80,8 +80,9 @@ nnoremap [d <C-b>
 "Close help split after autocmplete done
 autocmd CompleteDone * pclose
 
-"Calls Slamhound
-nnoremap <F2> :Slamhound<CR>
+"Autoreloads config when saved
+ au BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim|set fdm=marker|AirlineRefresh
+
 
 "dein Scripts-----------------------------
 
@@ -157,7 +158,7 @@ nmap <silent> <leader>t :TestNearest<CR>
 
 "Startify
 autocmd User Startified setlocal buftype=
-let g:startify_bookmarks = ['~/dotfiles/zshrc', '~/dotfiles/init.vim']
+let g:startify_bookmarks = ['~/dotfiles/zshrc', '~/dotfiles/init.vim', '~/dotfiles/vimperatorrc']
 let g:startify_list_order = ['bookmarks', 'files', 'dir', 'sessions', 'commands']
 
 "Deoplete
@@ -195,3 +196,6 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_clojure_checkers = ['eastwood']
+"
+"Calls Slamhound
+nnoremap <F2> :Slamhound<CR>
