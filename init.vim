@@ -83,6 +83,8 @@ autocmd CompleteDone * pclose
 "Autoreloads config when saved
  au BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim|set fdm=marker|AirlineRefresh
 
+"Map lclose command"
+map <leader>c :lclose<CR>
 
 "dein Scripts-----------------------------
 
