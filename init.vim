@@ -73,10 +73,6 @@ set expandtab "insert spaces instead of tabs
 " Open markdown files with Firefox (with Markdown plugin installed).
 autocmd BufEnter *.md exe 'noremap <F5> :!firefox %:p<CR>'
 
-"Jump to the implementation of method
-inoremap [d <C-b>
-nnoremap [d <C-b>
-
 "Close help split after autocmplete done
 autocmd CompleteDone * pclose
 
@@ -85,6 +81,19 @@ autocmd CompleteDone * pclose
 
 "Map lclose command"
 map <leader>c :lclose<CR>
+
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+
+" Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
+set clipboard=unnamed
 
 "dein Scripts-----------------------------
 
@@ -177,6 +186,7 @@ function! TabWrap()
         return "\<C-N>"
     endif
 endfunction
+"
 " power tab
 imap <silent><expr><tab> TabWrap()
 " Ctrl-Space: summon FULL (synced) autocompletion
@@ -201,3 +211,8 @@ let g:syntastic_clojure_checkers = ['eastwood']
 "
 "Calls Slamhound
 nnoremap <F2> :Slamhound<CR>
+
+"Fireplace"
+inoremap <C-b> [<C-D>
+inoremap <C-b> [<C-D>
+
