@@ -24,6 +24,9 @@ nnoremap <F1> <ESC>
 inoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
+nnoremap <ENTER> :w<cr>
+nnoremap ; :
+
 "Exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
@@ -92,8 +95,8 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
-
 set clipboard=unnamed
+
 
 "dein Scripts-----------------------------
 
@@ -214,5 +217,4 @@ nnoremap <F2> :Slamhound<CR>
 
 "Fireplace"
 inoremap <C-b> [<C-D>
-inoremap <C-b> [<C-D>
-
+vnoremap <C-b> [<C-D><CR>
