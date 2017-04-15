@@ -59,6 +59,8 @@ export HISTFILESIZE=10000
 export ZSH=/home/pmensik/.oh-my-zsh
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
+export PGHOST=localhost
+
 source $ZSH/oh-my-zsh.sh
 
 bindkey "^R" history-incremental-search-backward
@@ -85,17 +87,25 @@ bindkey "^R" history-incremental-search-backward
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshrc="nvim ~/dotfiles/zshrc"
+alias vimperatorrc="nvim ~/dotfiles/vimperatorrc"
+alias initvim="nvim ~/dotfiles/init.vim"
+alias sclip='xclip -selection c'
+alias gclip='xclip -selection clipboard -o'
+
+alias my-ip="curl 'https://api.ipify.org'"
 alias gch="git checkout ."
+alias glo="git log"
+alias gloo="git log --oneline"
+alias gss="git stash"
+alias gsp="git stash pop"
 alias gdi="git diff"
 alias gdic="git diff --cached"
 alias gst="git status"
 alias gad="git add ."
 alias gco="git commit"
 alias gcoa="git commit -a"
-alias gpu="git push"
+alias gpu="git push origin `git branch | grep -e "^*" | cut -d' ' -f 2`"
 alias refresh="source ~/.zshrc"
 alias listp="ps -aux"
 alias vi="vim"

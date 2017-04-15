@@ -97,6 +97,12 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 set clipboard=unnamed
 
+set fileformat=unix
+set fileformats=unix,dos
+"set nobinary
+
+" Search and replace in block
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 "dein Scripts-----------------------------
 
@@ -127,6 +133,7 @@ call dein#add('guns/vim-slamhound')
 call dein#add('venantius/vim-eastwood')
 call dein#add('venantius/vim-cljfmt')
 call dein#add('vim-syntastic/syntastic')
+call dein#add('easymotion/vim-easymotion')
 
 " You can specify revision/branch/tag.
 "call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
