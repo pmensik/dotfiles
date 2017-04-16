@@ -122,6 +122,7 @@ Plug 'easymotion/vim-easymotion'
 " call dein#add('junegunn/fzf.vim')
 "
 Plug 'guns/vim-sexp', { 'for': 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'guns/vim-slamhound', { 'for': 'clojure' }
 Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
