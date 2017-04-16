@@ -104,51 +104,35 @@ set fileformats=unix,dos
 " Search and replace in block
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
-"dein Scripts-----------------------------
-
-" Required:
-set runtimepath^=/home/pmensik/.config/nvim/dein/repos/github.com/Shougo/dein.vim/repos/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin('/home/pmensik/.config/nvim/dein/repos/github.com/Shougo/dein.vim')
-
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Add or remove your plugins here:
-call dein#add('morhetz/gruvbox')
-call dein#add('vim-airline/vim-airline')
-call dein#add('scrooloose/nerdtree')
-call dein#add('artur-shaik/vim-javacomplete2')
-call dein#add('janko-m/vim-test')
-call dein#add('mhinz/vim-startify')
-call dein#add('tpope/vim-fireplace')
-call dein#add('Shougo/deoplete.nvim')
-call dein#add('guns/vim-sexp')
-call dein#add('tpope/vim-commentary')
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'janko-m/vim-test'
+Plug 'mhinz/vim-startify'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-dispatch'
+Plug 'vim-syntastic/syntastic'
+Plug 'easymotion/vim-easymotion'
 " call dein#add('junegunn/fzf')
 " call dein#add('junegunn/fzf.vim')
-call dein#add('guns/vim-slamhound')
-call dein#add('venantius/vim-eastwood')
-call dein#add('venantius/vim-cljfmt')
-call dein#add('vim-syntastic/syntastic')
-call dein#add('easymotion/vim-easymotion')
+"
+Plug 'guns/vim-sexp', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'guns/vim-slamhound', { 'for': 'clojure' }
+Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
+Plug 'venantius/vim-cljfmt', { 'for': 'clojure' }
+Plug 'tpope/vim-salve', { 'for': 'clojure' }
 
-" You can specify revision/branch/tag.
-"call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 
-" Required:
-call dein#end()
+call plug#end()
 
-" Required:
 filetype plugin indent on
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-"End dein Scripts-------------------------
 
 "------------ Plugins ------------
 
