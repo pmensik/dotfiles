@@ -8,6 +8,7 @@ set smartcase "Case insensitive if everything is lower case
 set gdefault "Global replacement by default, omit the g in :%s/foo/bar
 set textwidth=120 "Line length before wrap
 set colorcolumn=121 
+set autoread "Files refresh automatically
 
 "So you don't cheat using the arrows
 nnoremap <up> <nop>
@@ -24,7 +25,6 @@ nnoremap <F1> <ESC>
 inoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-nnoremap <ENTER> :w<cr>
 nnoremap ; :
 
 "Exit terminal mode
@@ -118,9 +118,8 @@ Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-dispatch'
 Plug 'vim-syntastic/syntastic'
 Plug 'easymotion/vim-easymotion'
-" call dein#add('junegunn/fzf')
-" call dein#add('junegunn/fzf.vim')
-"
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
 Plug 'guns/vim-sexp', { 'for': 'clojure' }
 Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
@@ -128,6 +127,8 @@ Plug 'guns/vim-slamhound', { 'for': 'clojure' }
 Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
 Plug 'venantius/vim-cljfmt', { 'for': 'clojure' }
 Plug 'tpope/vim-salve', { 'for': 'clojure' }
+Plug 'snoe/clj-refactor.nvim', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 
@@ -164,7 +165,7 @@ nmap <silent> <leader>t :TestNearest<CR>
 
 "Startify
 autocmd User Startified setlocal buftype=
-let g:startify_bookmarks = ['~/dotfiles/zshrc', '~/dotfiles/init.vim', '~/dotfiles/vimperatorrc']
+let g:startify_bookmarks = ['~/dotfiles/zshrc', '~/dotfiles/init.vim', '~/dotfiles/vimperatorrc', '~/.lein/profiles.clj']
 let g:startify_list_order = ['bookmarks', 'files', 'dir', 'sessions', 'commands']
 
 "Deoplete
@@ -210,3 +211,12 @@ nnoremap <F2> :Slamhound<CR>
 "Fireplace"
 inoremap <C-b> [<C-D>
 vnoremap <C-b> [<C-D><CR>
+
+"Clojure static
+let g:clojure_syntax_keywords = {
+    \ 'clojureMacro': ["defproject", "defcustom"],
+    \ 'clojureFunc': ["string/replace"]
+    \ }
+
+"FZF
+nnoremap <SPACE> :FZF<cr>
