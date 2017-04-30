@@ -6,6 +6,7 @@ let mapleader = ","
 
 nnoremap <leader>bb t http://jizdnirady.idnes.cz/brno/spojeni/<enter>
 nnoremap <leader>gg o gmail.com<enter>
+nnoremap <leader>ss o stackoverflow.com<enter>
 nnoremap <leader>pp :winopen -private<enter>
 
 highlight! Hint font-family: monospace; font-size: 16px; font-weight: bold; text-transform: uppercase; color: white; background-color: red; border-color: ButtonShadow; border-width: 0px; border-style: solid; padding: 0px 1px 0px 1px;

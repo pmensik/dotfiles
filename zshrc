@@ -53,7 +53,7 @@ plugins=(git command-not-found common-aliases debian git-extras mvn python vi-mo
 # User configuration
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:~/.local/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/pmensik/.local/bin"
 export HISTFILESIZE=10000
 
 export ZSH=/home/pmensik/.oh-my-zsh
