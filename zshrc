@@ -48,7 +48,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git command-not-found common-aliases debian git-extras mvn python vi-mode web-search lein)
+plugins=(git git-open command-not-found common-aliases debian git-extras mvn python vi-mode web-search lein)
 
 # User configuration
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -60,6 +60,9 @@ export ZSH=/home/pmensik/.oh-my-zsh
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
 export PGHOST=localhost
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 source $ZSH/oh-my-zsh.sh
 

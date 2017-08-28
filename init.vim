@@ -54,7 +54,7 @@ nnoremap <leader>w <C-w>v<C-w>l
 "Closes buffer without closing the underlying window
 map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>. 
 "Cycle between buffers
-map <C-P> :bprevious<CR>
+map <C-P> :e#<CR>
 map <C-N> :bnext<CR>
 
 "Autocomplete window"
@@ -119,7 +119,11 @@ Plug 'tpope/vim-dispatch'
 Plug 'vim-syntastic/syntastic'
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'neomake/neomake'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
+"Clojure specific
 Plug 'guns/vim-sexp', { 'for': 'clojure' }
 Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
@@ -129,6 +133,7 @@ Plug 'venantius/vim-cljfmt', { 'for': 'clojure' }
 Plug 'tpope/vim-salve', { 'for': 'clojure' }
 Plug 'snoe/clj-refactor.nvim', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'arsenerei/vim-sayid', { 'for': 'clojure' }
 
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 
@@ -214,9 +219,33 @@ vnoremap <C-b> [<C-D><CR>
 
 "Clojure static
 let g:clojure_syntax_keywords = {
-    \ 'clojureMacro': ["defproject", "defcustom"],
-    \ 'clojureFunc': ["string/replace"]
+    \ 'clojureMacro': ["defproject", "defcustom", "defroutes"],
+    \ 'clojureFunc': ["set-fields", "exec-raw", "select", "fields", "values", "join", "delete", "where", "insert"]
     \ }
 
 "FZF
 nnoremap <SPACE> :FZF<cr>
+let g:fzf_action = {
+  \ 'ctrl-v': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-t': 'vsplit' }
+
+" Run NeoMake on read and write operations
+autocmd! BufReadPost,BufWritePost * Neomake
+
+" Disable inherited syntastic
+let g:syntastic_mode_map = {
+  \ "mode": "active",
+  \ "active_filetypes": [],
+  \ "passive_filetypes": [] }
+
+let g:neomake_serialize = 1
+let g:neomake_serialize_abort_on_error = 1
+
+"Snippets
+let g:UltiSnipsExpandTrigger="<`>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
