@@ -122,6 +122,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'neomake/neomake'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'neovim/node-host', { 'do': 'npm install -g neovim' }
 
 "Clojure specific
 Plug 'guns/vim-sexp', { 'for': 'clojure' }
@@ -134,6 +135,7 @@ Plug 'tpope/vim-salve', { 'for': 'clojure' }
 Plug 'snoe/clj-refactor.nvim', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 Plug 'arsenerei/vim-sayid', { 'for': 'clojure' }
+Plug 'snoe/nvim-parinfer.js', { 'for' : 'clojure'}
 
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 
