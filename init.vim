@@ -7,7 +7,7 @@ set ignorecase
 set smartcase "Case insensitive if everything is lower case
 set gdefault "Global replacement by default, omit the g in :%s/foo/bar
 set textwidth=120 "Line length before wrap
-set colorcolumn=121 
+set colorcolumn=121
 set autoread "Files refresh automatically
 
 "So you don't cheat using the arrows
@@ -37,14 +37,14 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 "So you don't have to use Shift for commands
-nnoremap ; : 
+nnoremap ; :
 
 let mapleader = "," "Sets leader key
 let maplocalleader = "\\"
-inoremap jj <ESC> 
+inoremap jj <ESC>
 "
 "Clear search results
-nnoremap <leader><space> :noh<cr> 
+nnoremap <leader><space> :noh<cr>
 "Jump to parenthesis
 nnoremap <tab> %
 vnoremap <tab> %
@@ -52,29 +52,35 @@ vnoremap <tab> %
 nnoremap <leader>w <C-w>v<C-w>l
 
 "Closes buffer without closing the underlying window
-map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>. 
+map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>.
 "Cycle between buffers
 map <C-P> :e#<CR>
 map <C-N> :bnext<CR>
 
+"Save file
+nmap <CR> :w<CR>
+
+"Save and close
+nmap <Bs> :wq<CR>
+
 "Autocomplete window"
-"inoremap <C-Space> <C-X><C-O> 
+"inoremap <C-Space> <C-X><C-O>
 "inoremap <C-x><C-o> <C-Space>
 "if exists('g:neovim_dot_app')
-"  nmap <c-space> <nul> 
+"  nmap <c-space> <nul>
 "end
 
 "Tabs
 set tabstop=4
-set shiftwidth=4 
+set shiftwidth=4
 set softtabstop=4 "for indentation in normal mode
-set expandtab "insert spaces instead of tabs 
+set expandtab "insert spaces instead of tabs
 
 "Save of file on lost focus
 "autocmd FocustLost * :wa
 
 " Open markdown files with Firefox (with Markdown plugin installed).
-autocmd BufEnter *.md exe 'noremap <F5> :!firefox %:p<CR>'
+autocmd BufEnter *.md exe 'noremap <F5> :!vmd %:p<CR>'
 
 "Close help split after autocmplete done
 autocmd CompleteDone * pclose
@@ -104,6 +110,9 @@ set fileformats=unix,dos
 " Search and replace in block
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
+"Remove trailing whitespaces on save
+autocmd BufWritePre * :%s/\s\+$//e
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Add or remove your plugins here:
@@ -116,13 +125,15 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-dispatch'
-Plug 'vim-syntastic/syntastic'
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'neomake/neomake'
+Plug 'w0rp/ale' "Linter
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'neovim/node-host', { 'do': 'npm install -g neovim' }
+Plug 'neovim/node-host', {'commit': 'c1c4872a6a6837f333d8470185e0ea0f10256e3c', 'do': 'npm install'}
+Plug 'b4b4r07/vim-sqlfmt'
+Plug 'godlygeek/tabular' "Needed for vim-markdown
+Plug 'plasticboy/vim-markdown'
 
 "Clojure specific
 Plug 'guns/vim-sexp', { 'for': 'clojure' }
@@ -135,9 +146,34 @@ Plug 'tpope/vim-salve', { 'for': 'clojure' }
 Plug 'snoe/clj-refactor.nvim', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 Plug 'arsenerei/vim-sayid', { 'for': 'clojure' }
-Plug 'snoe/nvim-parinfer.js', { 'for' : 'clojure'}
+Plug 'humorless/vim-kibit', { 'for' : 'clojure' }
+" Plug 'snoe/nvim-parinfer.js', { 'for' : 'clojure'}
 
+"Java
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
+
+"JavaScript
+Plug 'pangloss/vim-javascript', {'for' : 'javascript'}
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install && npm install -g tern' }
+Plug 'carlitux/deoplete-ternjs'
+Plug 'mattn/emmet-vim' "and HTML and CSS
+
+"Python
+Plug 'zchee/deoplete-jedi'
+
+"C++
+Plug 'zchee/deoplete-clang'
+
+"Crypto
+Plug 'tomlion/vim-solidity'
+Plug 'dmdque/solidity.vim'
+
+"Go
+Plug 'fatih/vim-go'
+
+"Typescript
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'mhartington/nvim-typescript', {'do': ':!install.sh \| UpdateRemotePlugins'}
 
 call plug#end()
 
@@ -145,7 +181,7 @@ filetype plugin indent on
 
 "------------ Plugins ------------
 
-"Gruvbox 
+"Gruvbox
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 syntax enable
 colorscheme gruvbox
@@ -189,6 +225,8 @@ function! TabWrap()
         return "\<C-N>"
     endif
 endfunction
+let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang-3.8.so.1"
+let g:deoplete#sources#clang#clang_header = "/usr/lib/clang"
 "
 " power tab
 imap <silent><expr><tab> TabWrap()
@@ -199,19 +237,6 @@ inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
 " Enter: complete&close popup if visible (so next Enter works); else: break undo
 inoremap <silent><expr> <Cr> pumvisible() ? deoplete#mappings#close_popup() : "<C-g>u<Cr>"
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_clojure_checkers = ['eastwood']
-"
 "Calls Slamhound
 nnoremap <F2> :Slamhound<CR>
 
@@ -222,7 +247,7 @@ vnoremap <C-b> [<C-D><CR>
 "Clojure static
 let g:clojure_syntax_keywords = {
     \ 'clojureMacro': ["defproject", "defcustom", "defroutes"],
-    \ 'clojureFunc': ["set-fields", "exec-raw", "select", "fields", "values", "join", "delete", "where", "insert"]
+    \ 'clojureFunc': ["set-fields", "exec-raw", "select", "fields", "values", "join", "delete", "where", "insert", "select*", "group", "aggregate", "subselect"]
     \ }
 
 "FZF
@@ -232,18 +257,6 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-t': 'vsplit' }
 
-" Run NeoMake on read and write operations
-autocmd! BufReadPost,BufWritePost * Neomake
-
-" Disable inherited syntastic
-let g:syntastic_mode_map = {
-  \ "mode": "active",
-  \ "active_filetypes": [],
-  \ "passive_filetypes": [] }
-
-let g:neomake_serialize = 1
-let g:neomake_serialize_abort_on_error = 1
-
 "Snippets
 let g:UltiSnipsExpandTrigger="<`>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -251,3 +264,17 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+"ALE linter
+let g:airline#extensions#ale#enabled = 1
+
+"JavaScript linter
+let g:neomake_javascript_enabled_makers = ['eslint']
+
+"JavaScript formatting
+autocmd FileType javascript set formatprg=prettier\ --stdin
+autocmd BufWritePre *.js :normal gggqG
+
+"Go
+let g:go_fmt_command = "goimports"
+let g:go_bin_path= "/usr/local/go/"
