@@ -1,0 +1,2 @@
+autocmd LocationChange 'https://docs.google.com/*' :normal! <C-z>
+autocmd LocationChange 'https://gmail.com/*' :normal! <C-z>

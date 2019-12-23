@@ -135,7 +135,7 @@ Plug 'tpope/vim-salve', { 'for': 'clojure' }
 Plug 'snoe/clj-refactor.nvim', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 Plug 'arsenerei/vim-sayid', { 'for': 'clojure' }
-Plug 'snoe/nvim-parinfer.js', { 'for' : 'clojure'}
+" Plug 'snoe/nvim-parinfer.js', { 'for' : 'clojure'}
 
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 
@@ -198,6 +198,8 @@ inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
 inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
 " Enter: complete&close popup if visible (so next Enter works); else: break undo
 inoremap <silent><expr> <Cr> pumvisible() ? deoplete#mappings#close_popup() : "<C-g>u<Cr>"
+" MacOS fix for tab completition
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " Syntastic
 set statusline+=%#warningmsg#

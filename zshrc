@@ -48,21 +48,29 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-open command-not-found common-aliases debian git-extras mvn python vi-mode web-search lein)
+plugins=(git command-not-found common-aliases debian git-extras mvn python vi-mode web-search lein)
 
 # User configuration
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/pmensik/.local/bin"
-export HISTFILESIZE=10000
+export HISTFILESIZE=1000000
 
-export ZSH=/home/pmensik/.oh-my-zsh
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export ZSH="$HOME/.oh-my-zsh"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
 
 export PGHOST=localhost
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+export LC_ALL=en_US.UTF-8
+
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 source $ZSH/oh-my-zsh.sh
 
