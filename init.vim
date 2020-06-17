@@ -7,8 +7,9 @@ set ignorecase
 set smartcase "Case insensitive if everything is lower case
 set gdefault "Global replacement by default, omit the g in :%s/foo/bar
 set textwidth=120 "Line length before wrap
-set colorcolumn=121 
+set colorcolumn=121
 set autoread "Files refresh automatically
+set autowrite
 
 "So you don't cheat using the arrows
 nnoremap <up> <nop>
@@ -37,14 +38,14 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 "So you don't have to use Shift for commands
-nnoremap ; : 
+nnoremap ; :
 
 let mapleader = "," "Sets leader key
 let maplocalleader = "\\"
-inoremap jj <ESC> 
+inoremap jj <ESC>
 "
 "Clear search results
-nnoremap <leader><space> :noh<cr> 
+nnoremap <leader><space> :noh<cr>
 "Jump to parenthesis
 nnoremap <tab> %
 vnoremap <tab> %
@@ -52,23 +53,23 @@ vnoremap <tab> %
 nnoremap <leader>w <C-w>v<C-w>l
 
 "Closes buffer without closing the underlying window
-map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>. 
+map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>.
 "Cycle between buffers
 map <C-P> :e#<CR>
 map <C-N> :bnext<CR>
 
 "Autocomplete window"
-"inoremap <C-Space> <C-X><C-O> 
+"inoremap <C-Space> <C-X><C-O>
 "inoremap <C-x><C-o> <C-Space>
 "if exists('g:neovim_dot_app')
-"  nmap <c-space> <nul> 
+"  nmap <c-space> <nul>
 "end
 
 "Tabs
 set tabstop=4
-set shiftwidth=4 
+set shiftwidth=4
 set softtabstop=4 "for indentation in normal mode
-set expandtab "insert spaces instead of tabs 
+set expandtab "insert spaces instead of tabs
 
 "Save of file on lost focus
 "autocmd FocustLost * :wa
@@ -139,13 +140,17 @@ Plug 'arsenerei/vim-sayid', { 'for': 'clojure' }
 
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 
+"Golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+
 call plug#end()
 
 filetype plugin indent on
 
 "------------ Plugins ------------
 
-"Gruvbox 
+"Gruvbox
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 syntax enable
 colorscheme gruvbox
@@ -189,6 +194,8 @@ function! TabWrap()
         return "\<C-N>"
     endif
 endfunction
+let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang-3.8.so.1"
+let g:deoplete#sources#clang#clang_header = "/usr/lib/clang"
 "
 " power tab
 imap <silent><expr><tab> TabWrap()
@@ -224,7 +231,8 @@ vnoremap <C-b> [<C-D><CR>
 "Clojure static
 let g:clojure_syntax_keywords = {
     \ 'clojureMacro': ["defproject", "defcustom", "defroutes"],
-    \ 'clojureFunc': ["set-fields", "exec-raw", "select", "fields", "values", "join", "delete", "where", "insert"]
+    \ 'clojureFunc': ["set-fields", "exec-raw", "select", "fields", "values", "join", "delete", "where", "insert",
+    \ "select*", "group", "aggregate", "subselect"]
     \ }
 
 "FZF
@@ -253,3 +261,21 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
+"ALE linter
+let g:airline#extensions#ale#enabled = 1
+
+"JavaScript linter
+let g:neomake_javascript_enabled_makers = ['eslint']
+
+"JavaScript formatting
+autocmd FileType javascript set formatprg=prettier\ --stdin
+autocmd BufWritePre *.js :normal gggqG
+
+"Go
+let g:go_fmt_command = "goimports"
+let g:go_bin_path= "/usr/local/go/"
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
